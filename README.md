@@ -1,10 +1,18 @@
 # SFXDX Demo App
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cbc9bfb5-bfab-402e-ba74-b6c302890acd/deploy-status)](https://app.netlify.com/sites/cute-longma-bbd271/deploys)
+
 Test task for SFXDX company
+
+Figma design: https://www.figma.com/file/tMqxAo5kEXEsmJBO1EbYhp/Frontend-Test-(Copy)?node-id=603%3A6856&t=gLRRsUAffb9vJ5JE-0 \
+
+Deploy to Netlify: https://cute-longma-bbd271.netlify.app/
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+
 
 ### `yarn start`
 
