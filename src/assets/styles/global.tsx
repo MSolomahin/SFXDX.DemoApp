@@ -57,19 +57,19 @@ export const globals = css`
         background-position: -14% 49%, -34% 25%, -10% -120%, 30% 140%;
       }
       50% {
-        background-position: 85% 120%, 120% 76%, 70% -120%, -100% 10%;
+        background-position: -85% -120%, 120% 76%, 70% -120%, -100% 10%;
       }
       60% {
-        background-position: 0% 85%, 87% -54%, -32% 32%, 23% -49%;
+        background-position: -0% -85%, 87% -54%, -32% 32%, 23% -49%;
       }
       70% {
-        background-position: 53% 1%, 12% 34%, 50% 50%, 100% 92%;
+        background-position: -53% -1%, 12% 34%, 50% 50%, 100% 92%;
       }
       80% {
-        background-position: 39% 15%, 95% 54%, -100% 30%, -100% 39%;
+        background-position: -39% -15%, 95% 54%, -100% 30%, -100% 39%;
       }
       90% {
-        background-position: 84% -15%, -23% 100%, 2% 42%, -40% 120%;
+        background-position: -84% -15%, -23% 100%, 2% 42%, -40% 120%;
       }
       100% {
         background-position: -50% -50%, 100% -50%, -50% 150%, 100% 150%;

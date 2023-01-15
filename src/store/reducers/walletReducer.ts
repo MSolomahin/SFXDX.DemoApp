@@ -28,13 +28,13 @@ export const walletConnect = createAsyncThunk(
       if (provider == null) return
 
       const web3 = new Web3(Web3.givenProvider)
+      const providerAccounts = await web3.eth.requestAccounts()
 
       const networkId = await web3.eth.net.getId()
       const isNetworkCorrect = isCorrectNetwork(networkId)
       if (!isNetworkCorrect) {
         throw new Error(Errors.WRONG_NETWORK)
       }
-      const providerAccounts = await web3.eth.requestAccounts()
 
       window.ethereum?.on('accountsChanged', (accounts: string[]) => {
         dispatch(walletReducerSlice.actions.changeAccount(accounts[0]))
