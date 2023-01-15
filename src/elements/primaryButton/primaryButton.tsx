@@ -6,9 +6,9 @@ import Loader from '../loader'
 import { PrimaryButtonProps } from './primaryButton.types'
 
 const PrimaryButton: FunctionComponent<PrimaryButtonProps> = (props) => {
-  const { label, onClick, pending } = props
+  const { label, onClick, pending, disabled } = props
   return (
-    <RootButton onClick={onClick} pending={pending} disabled={pending}>
+    <RootButton onClick={onClick} pending={pending} disabled={disabled ?? pending}>
       <P1 color={'var(--color-white)'}>{label}</P1>
       {pending && <LoaderContainer>
         <Loader size={20} />

@@ -25,7 +25,7 @@ export const walletConnect = createAsyncThunk(
   async (_, { rejectWithValue, dispatch }) => {
     try {
       const provider = window.ethereum
-      if (provider == null) return
+      if (!provider) throw new Error(Errors.METAMASK_IS_NOT_INSTALLED)
 
       const web3 = new Web3(Web3.givenProvider)
       const providerAccounts = await web3.eth.requestAccounts()
@@ -55,15 +55,15 @@ export const walletReducerSlice = createSlice({
   name: 'walletData',
   initialState,
   reducers: {
-    resetState (state) {
+    resetState(state) {
       state.status = 'initial'
       state.error = null
     },
-    changeAccount (state, action) {
+    changeAccount(state, action) {
       state.wallet = state.wallet ? action.payload : ''
       toast.success('Account changed')
     },
-    changeNetwork (state, action) {
+    changeNetwork(state, action) {
       const newNetworkId = action.payload
       const isNetworkCorrect = isCorrectNetwork(newNetworkId)
       if (!isNetworkCorrect) {

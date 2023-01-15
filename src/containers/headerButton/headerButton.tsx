@@ -29,6 +29,7 @@ const HeaderButton: FunctionComponent = () => {
           pending={status === 'pending'}
           label="Connect Wallet"
           onClick={() => dispatch(walletConnect())}
+          disabled={!window.ethereum?.isMetaMask}
         />
       }
       {status === 'rejected' && error === Errors.WRONG_NETWORK &&

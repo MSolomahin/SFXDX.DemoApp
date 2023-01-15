@@ -6,7 +6,7 @@ const Notification = () => {
     <div>
       <Toaster
         toastOptions={{
-          duration: 3000,
+          duration: 5000,
           position: 'bottom-left',
           style: {
             fontFamily: 'Gilroy, sans-serif',
@@ -15,7 +15,7 @@ const Notification = () => {
             borderRadius: '16px',
             color: '#000',
             padding: '20px',
-            fontWeight: 500
+            fontWeight: '500'
           }
         }}
       />
