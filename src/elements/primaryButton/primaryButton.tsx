@@ -8,7 +8,7 @@ import { PrimaryButtonProps } from './primaryButton.types'
 const PrimaryButton: FunctionComponent<PrimaryButtonProps> = (props) => {
   const { label, onClick, pending } = props
   return (
-    <RootButton onClick={onClick} pending={pending}>
+    <RootButton onClick={onClick} pending={pending} disabled={pending}>
       <P1 color={'var(--color-white)'}>{label}</P1>
       {pending && <LoaderContainer>
         <Loader size={20} />

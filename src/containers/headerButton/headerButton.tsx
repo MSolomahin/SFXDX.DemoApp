@@ -18,25 +18,25 @@ const HeaderButton: FunctionComponent = () => {
     dispatch(walletReducerSlice.actions.resetState())
   }
   return (
-        <>
-            {isWalletConnected
-              ? <ButtonWithIcons
-                    label={getShort(wallet)}
-                    iconLeft={<MetamaskIcon />}
-                    iconRight={<LinkedIcon />}
-                />
-              : <PrimaryButton
-                    pending={status === 'pending'}
-                    label="Connect Wallet"
-                    onClick={() => dispatch(walletConnect())}
-                />
-            }
-            {status === 'rejected' && error === Errors.WRONG_NETWORK &&
-                <Modal
-                    title='Wrong Network'
-                    description='Wrong network, please switch to Goerli network.'
-                    onClose={onClose} />}
-        </>
+    <>
+      {isWalletConnected
+        ? <ButtonWithIcons
+          label={getShort(wallet)}
+          iconLeft={<MetamaskIcon />}
+          iconRight={<LinkedIcon />}
+        />
+        : <PrimaryButton
+          pending={status === 'pending'}
+          label="Connect Wallet"
+          onClick={() => dispatch(walletConnect())}
+        />
+      }
+      {status === 'rejected' && error === Errors.WRONG_NETWORK &&
+        <Modal
+          title='Wrong Network'
+          description='Wrong network, please switch to Goerli network.'
+          onClose={onClose} />}
+    </>
   )
 }
 
