@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from 'react'
+import React, { FC, memo } from 'react'
 import { styled } from '@linaria/react'
-import Loader from '../../elements/loader'
+import Loader from '../loader'
 
-const Loading: FunctionComponent = () => {
+const Loading: FC = () => {
   return (
         <RootLoading>
             <Loader color={'var(--color-green'} />
@@ -18,4 +18,4 @@ const RootLoading = styled.div`
     height: calc(100vh - 335px);
 `
 
-export default Loading
+export default memo(Loading)

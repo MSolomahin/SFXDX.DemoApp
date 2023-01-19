@@ -1,9 +1,9 @@
 import { styled } from '@linaria/react'
-import React, { FunctionComponent } from 'react'
+import React, { FC, memo } from 'react'
 import { P3 } from '../../assets/styles/UIKit.styled'
 import { ButtonWithIconsProps } from './buttonWithIcons.types'
 
-const ButtonWithIcons: FunctionComponent<ButtonWithIconsProps> = (props) => {
+const ButtonWithIcons: FC<ButtonWithIconsProps> = (props) => {
   const { label, onClick, iconLeft, iconRight } = props
   return (
     <RootButton onClick={onClick}>
@@ -27,4 +27,4 @@ const RootButton = styled.button`
     }
 `
 
-export default ButtonWithIcons
+export default memo(ButtonWithIcons)

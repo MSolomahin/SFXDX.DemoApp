@@ -1,11 +1,11 @@
 import { styled } from '@linaria/react'
-import React, { FunctionComponent } from 'react'
+import React, { FC, memo } from 'react'
 import { P1 } from '../../assets/styles/UIKit.styled'
 import { media } from '../../assets/styles/utils'
 import Loader from '../loader'
 import { PrimaryButtonProps } from './primaryButton.types'
 
-const PrimaryButton: FunctionComponent<PrimaryButtonProps> = (props) => {
+const PrimaryButton: FC<PrimaryButtonProps> = (props) => {
   const { label, onClick, pending, disabled } = props
   return (
     <RootButton onClick={onClick} pending={pending} disabled={disabled ?? pending}>
@@ -49,6 +49,7 @@ const RootButton = styled.button<{ pending?: boolean }>`
 const LoaderContainer = styled.div`
     position: absolute;
     left: calc(50% - 10px);
-    top: calc(50% - 10px);`
+    top: calc(50% - 10px);
+`
 
-export default PrimaryButton
+export default memo(PrimaryButton)

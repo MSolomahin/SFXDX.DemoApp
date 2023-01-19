@@ -1,8 +1,8 @@
 import { styled } from '@linaria/react'
-import React, { FunctionComponent } from 'react'
+import React, { FC, memo } from 'react'
 import { LoaderProps } from './loader.types'
 
-const Loader: FunctionComponent<LoaderProps> = (props) => {
+const Loader: FC<LoaderProps> = (props) => {
   const { size = 40, color = '#fff' } = props
   return (
     <Root size={size} color={color}>
@@ -13,8 +13,6 @@ const Loader: FunctionComponent<LoaderProps> = (props) => {
     </Root>
   )
 }
-
-export default Loader
 
 const Root = styled.div<{ size: number, color: string }>`
   display: inline-block;
@@ -56,3 +54,5 @@ const Root = styled.div<{ size: number, color: string }>`
     }
   }
 `
+
+export default memo(Loader)

@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react'
-import React, { FunctionComponent } from 'react'
+import React, { FC } from 'react'
 
-const Main: FunctionComponent = () => {
+const Main: FC = () => {
   return (
     <>
       <Content/>

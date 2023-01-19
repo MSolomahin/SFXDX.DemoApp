@@ -1,10 +1,10 @@
 import { styled } from '@linaria/react'
-import React, { FunctionComponent } from 'react'
+import React, { FC, memo } from 'react'
 import LogoIcon from '../../assets/icons/logo'
 import { media } from '../../assets/styles/utils'
-import HeaderButton from '../headerButton'
+import HeaderButton from '../../containers/headerButton'
 
-const Header: FunctionComponent = () => {
+const Header: FC = () => {
   return (
     <Root>
       <IconContainer>
@@ -49,4 +49,4 @@ const IconContainer = styled.div`
   }
 `
 
-export default Header
+export default memo(Header)

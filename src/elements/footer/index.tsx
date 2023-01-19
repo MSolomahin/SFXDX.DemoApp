@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react'
-import React, { FunctionComponent } from 'react'
+import React, { FC, memo } from 'react'
 import FacebookIcon from '../../assets/icons/facebookIcon'
 import InstagramIcon from '../../assets/icons/instagramIcon'
 import LogoIcon from '../../assets/icons/logo'
@@ -8,7 +8,7 @@ import YoutubeIcon from '../../assets/icons/youtubeIcon'
 import { P2, P3 } from '../../assets/styles/UIKit.styled'
 import { media } from '../../assets/styles/utils'
 
-const Footer: FunctionComponent = () => {
+const Footer: FC = () => {
   return (
         <RootFooter>
             <FooterTop>
@@ -18,7 +18,7 @@ const Footer: FunctionComponent = () => {
                     <LinksItem><P2 color={'var(--color-text-tertiary)'}>Cookie Policy</P2></LinksItem>
                 </Links>
                 <IconContainer>
-                <LogoIcon />
+                    <LogoIcon />
                 </IconContainer>
                 <Socials>
                     <FacebookIcon />
@@ -37,6 +37,7 @@ const Footer: FunctionComponent = () => {
 const FooterTop = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     
     ${media.middle} {
         flex-direction: column;
@@ -55,7 +56,7 @@ const RootFooter = styled.footer`
     background: #F0F5F5;
     width: 100%;
     border-top: 1px solid #CDD2DD;
-    padding: 50px 70px;
+    padding: 60px 70px 30px;
 `
 
 const Links = styled.ul`
@@ -89,4 +90,4 @@ const FooterRights = styled.div`
     text-align: center;
 `
 
-export default Footer
+export default memo(Footer)

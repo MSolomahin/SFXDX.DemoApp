@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react'
+import React, { FC } from 'react'
 import { Outlet } from 'react-router-dom'
-import Footer from '../../containers/footer'
-import Header from '../../containers/header'
+import Footer from '../../elements/footer'
+import Header from '../../elements/header'
 
-const MainLayout: FunctionComponent = () => {
+const MainLayout: FC = () => {
   return (
         <div>
             <Header />

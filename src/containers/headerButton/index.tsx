@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FC } from 'react'
 import LinkedIcon from '../../assets/icons/linkedIcon'
 import MetamaskIcon from '../../assets/icons/metamaskIcon'
 import ButtonWithIcons from '../../elements/buttonWithIcons'
@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import Modal from '../../elements/modal'
 import { Errors } from '../../assets/const/errorConsts'
 
-const HeaderButton: FunctionComponent = () => {
+const HeaderButton: FC = () => {
   const { wallet, status, isWalletConnected, error } = useAppSelector((state) => state.walletReducer)
 
   const dispatch = useAppDispatch()

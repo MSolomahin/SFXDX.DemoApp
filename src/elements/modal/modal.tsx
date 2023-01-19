@@ -1,12 +1,12 @@
 import { styled } from '@linaria/react'
-import React, { FunctionComponent } from 'react'
+import React, { FC, memo } from 'react'
 import CloseIcon from '../../assets/icons/closeIcon'
 import { P1, P2 } from '../../assets/styles/UIKit.styled'
 import { media } from '../../assets/styles/utils'
 import PrimaryButton from '../primaryButton'
 import { ModalProps } from './modal.types'
 
-const Modal: FunctionComponent<ModalProps> = (props) => {
+const Modal: FC<ModalProps> = (props) => {
   const { title, description, onClose } = props
   return (
         <Container>
@@ -61,4 +61,4 @@ const IconContainer = styled.button`
     cursor: pointer;
 `
 
-export default Modal
+export default memo(Modal)

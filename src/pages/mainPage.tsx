@@ -1,9 +1,9 @@
-import React, { FunctionComponent, Suspense } from 'react'
-import Loading from '../containers/loading'
+import React, { FC, Suspense } from 'react'
+import Loading from '../elements/loading'
 
 const Main = React.lazy(async () => await import('../modules/main'))
 
-const MainPage: FunctionComponent = () => {
+const MainPage: FC = () => {
   return (
     <Suspense fallback={<Loading/>}>
       <Main />
