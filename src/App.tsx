@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import { toast } from 'react-hot-toast'
 import { initVariables } from './assets/styles/UIKit.styled'
 import RouterApp from './router'
+import { showNotification } from './utils/showNotification'
 
 function App () {
   useEffect(() => {
     if (!window.ethereum?.isMetaMask) {
-      toast.error('Please install Metamask')
+      showNotification('error', 'Please install Metamask')
     }
   })
 

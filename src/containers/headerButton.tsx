@@ -3,25 +3,20 @@ import LinkedIcon from '../assets/icons/linkedIcon'
 import MetamaskIcon from '../assets/icons/metamaskIcon'
 import ButtonWithIcons from '../elements/buttonWithIcons'
 import PrimaryButton from '../elements/primaryButton'
-import { walletConnect, walletReducerSlice } from '../store/reducers/walletReducer'
+import { walletConnect } from '../store/wallet/walletReducer'
 import { getShort } from '../utils/utils'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import Modal from '../elements/modal'
-import { Errors } from '../assets/const/errorConsts'
+import { walletData } from '../store/wallet'
 
 const HeaderButton: FC = () => {
-  const { wallet, status, isWalletConnected, error } = useAppSelector((state) => state.walletReducer)
-
+  const { isWalletConnected, address, status } = useAppSelector(walletData)
   const dispatch = useAppDispatch()
 
-  const onClose = () => {
-    dispatch(walletReducerSlice.actions.resetState())
-  }
   return (
     <>
       {isWalletConnected
         ? <ButtonWithIcons
-          label={getShort(wallet)}
+          label={getShort(address)}
           iconLeft={<MetamaskIcon />}
           iconRight={<LinkedIcon />}
         />
@@ -32,11 +27,6 @@ const HeaderButton: FC = () => {
           disabled={!window.ethereum?.isMetaMask}
         />
       }
-      {status === 'rejected' && error === Errors.WRONG_NETWORK &&
-        <Modal
-          title='Wrong Network'
-          description='Wrong network, please switch to Goerli network.'
-          onClose={onClose} />}
     </>
   )
 }

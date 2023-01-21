@@ -1,20 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import toast from 'react-hot-toast'
 import Web3 from 'web3'
 import { Errors } from '../../assets/const/errorConsts'
+import { showNotification } from '../../utils/showNotification'
 import { isCorrectNetwork } from '../../utils/utils'
-
-export type IStatus = 'initial' | 'pending' | 'fulfilled' | 'rejected'
-
-interface IWalletData {
-  wallet: string
-  isWalletConnected: boolean
-  status: IStatus
-  error: string | null
-}
+import { IWalletData } from './walletTypes'
 
 export const initialState: IWalletData = {
-  wallet: '',
+  address: '',
   isWalletConnected: false,
   status: 'initial',
   error: null
@@ -60,35 +52,41 @@ export const walletReducerSlice = createSlice({
       state.error = null
     },
     changeAccount(state, action) {
-      state.wallet = state.wallet ? action.payload : ''
-      toast.success('Account changed')
+      state.address = state.address ? action.payload : ''
+      showNotification('success', 'Account changed')
     },
     changeNetwork(state, action) {
       const newNetworkId = action.payload
       const isNetworkCorrect = isCorrectNetwork(newNetworkId)
       if (!isNetworkCorrect) {
-        toast.error("Network changed but it's not correct")
-        state.wallet = ''
+        showNotification('error', 'Network changed but it\'s not correct')
+        state.address = ''
         state.isWalletConnected = false
       } else {
-        toast.success('Network changed')
+        showNotification('success', 'Network changed')
       }
     }
   },
-  extraReducers: {
-    [walletConnect.pending.type]: (state) => {
-      state.status = 'pending'
-    },
-    [walletConnect.fulfilled.type]: (state, action) => {
-      state.status = 'fulfilled'
-      state.isWalletConnected = true
-      state.wallet = action.payload
-    },
-    [walletConnect.rejected.type]: (state, action) => {
-      state.status = 'rejected'
-      state.isWalletConnected = false
-      state.error = action.payload
-    }
+  extraReducers: (builder) => {
+    builder
+      .addCase(walletConnect.pending, (state) => {
+        state.status = 'pending'
+      })
+      .addCase(walletConnect.fulfilled, (state, action) => {
+        state.status = 'fulfilled'
+        state.isWalletConnected = true
+        state.address = action.payload
+      })
+      .addCase(walletConnect.rejected, (state, action) => {
+        state.status = 'rejected'
+        state.isWalletConnected = false
+        if (typeof action.payload === 'string') {
+          state.error = action.payload
+        } else {
+          state.error = Errors.SOMETHING_WENT_WRONG
+        }
+        showNotification('error', state.error)
+      })
   }
 })
 
