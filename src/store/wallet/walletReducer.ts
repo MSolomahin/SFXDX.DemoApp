@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import Web3 from 'web3'
 import { Errors } from '../../assets/const/errorConsts'
-import { showNotification } from '../../utils/showNotification'
 import { isCorrectNetwork } from '../../utils/utils'
 import { IWalletData } from './walletTypes'
 
 export const initialState: IWalletData = {
   address: '',
+  chainId: null,
   isWalletConnected: false,
   status: 'initial',
   error: null
@@ -36,7 +36,7 @@ export const walletConnect = createAsyncThunk(
         dispatch(walletReducerSlice.actions.changeNetwork(networkId))
       })
 
-      return providerAccounts[0]
+      return { address: providerAccounts[0], chainId: networkId }
     } catch (error: any) {
       return rejectWithValue(error.message)
     }
@@ -53,17 +53,14 @@ export const walletReducerSlice = createSlice({
     },
     changeAccount(state, action) {
       state.address = state.address ? action.payload : ''
-      showNotification('success', 'Account changed')
     },
     changeNetwork(state, action) {
       const newNetworkId = action.payload
       const isNetworkCorrect = isCorrectNetwork(newNetworkId)
+      state.chainId = newNetworkId
       if (!isNetworkCorrect) {
-        showNotification('error', 'Network changed but it\'s not correct')
         state.address = ''
         state.isWalletConnected = false
-      } else {
-        showNotification('success', 'Network changed')
       }
     }
   },
@@ -73,9 +70,11 @@ export const walletReducerSlice = createSlice({
         state.status = 'pending'
       })
       .addCase(walletConnect.fulfilled, (state, action) => {
+        const { address, chainId } = action.payload
         state.status = 'fulfilled'
         state.isWalletConnected = true
-        state.address = action.payload
+        state.address = address
+        state.chainId = chainId
       })
       .addCase(walletConnect.rejected, (state, action) => {
         state.status = 'rejected'
@@ -85,7 +84,6 @@ export const walletReducerSlice = createSlice({
         } else {
           state.error = Errors.SOMETHING_WENT_WRONG
         }
-        showNotification('error', state.error)
       })
   }
 })

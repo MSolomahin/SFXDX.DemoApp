@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import { setupStore } from './store/store'
 import Notification from './utils/notification'
+import NetworkController from './controller/networkController'
 
 const store = setupStore()
 
@@ -16,6 +17,7 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>
         <Notification />
+        <NetworkController/>
         <App />
       </Provider>
     </BrowserRouter>

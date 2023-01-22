@@ -1,18 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { initVariables } from './assets/styles/UIKit.styled'
 import RouterApp from './router'
-import { showNotification } from './utils/showNotification'
 
-function App () {
-  useEffect(() => {
-    if (!window.ethereum?.isMetaMask) {
-      showNotification('error', 'Please install Metamask')
-    }
-  })
-
+function App() {
   return (
     <div className={initVariables}>
-      <RouterApp/>
+      <RouterApp />
     </div>
   )
 }
